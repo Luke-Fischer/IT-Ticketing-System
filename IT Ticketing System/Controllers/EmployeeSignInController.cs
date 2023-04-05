@@ -2,7 +2,7 @@
 
 namespace IT_Ticketing_System.Controllers
 {
-    public class EmployeeSignUpController : Controller
+    public class EmployeeSignInController : Controller
     {
         public IActionResult Index()
         {

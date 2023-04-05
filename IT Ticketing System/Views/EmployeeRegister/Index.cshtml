@@ -1,0 +1,32 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Sign In Page";
+}
+
+<form>
+    <div style="position:relative; width:50%; left:25%; top:90px;">
+        <h1 style="text-align:center;">Register</h1>
+        <!-- Email input -->
+        <div class="form-outline mb-4;">
+            <label class="form-label" for="emailRegister">Email address</label>
+            <input type="email" id="emailRegister" class="form-control" />
+        </div>
+        <br><br>
+        <!-- Password input -->
+        <div class="form-outline mb-4">
+            <label class="form-label" for="passwordRegister">Password</label>
+            <input type="password" id="passwordRegister" class="form-control" />
+        </div>
+
+        <!-- Password retype input -->
+        <div class="form-outline mb-4">
+            <label class="form-label" for="passwordRegisterRetype">Retype Password</label>
+            <input type="password" id="passwordRegisterRetype" class="form-control" />
+        </div>
+
+        <!-- Submit button -->
+        <button type="button" class="btn btn-primary btn-block mb-4">Register</button>
+    </div>
+</form>
