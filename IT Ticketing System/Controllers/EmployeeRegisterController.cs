@@ -8,5 +8,9 @@ namespace IT_Ticketing_System.Controllers
         {
             return View();
         }
+        public IActionResult Register()
+        {
+            return View();
+        }
     }
 }
