@@ -11,13 +11,13 @@ namespace IT_Ticketing_System.Models
         
         [Required]
         [DataType(DataType.Password)]
-        [StringLength(30, MinimumLength = 8, ErrorMessage = "Password must contain between 8 and 30 ")]
+        [StringLength(30, MinimumLength = 8, ErrorMessage = "Password must contain between 8 and 30 characters.")]
         public string Password { get; set; }
         
         [Required]
         [DisplayName("Retype Password")]
         [DataType(DataType.Password)]
-        [StringLength(30, MinimumLength = 8, ErrorMessage = "Password must contain between 8 and 30 ")]
+        [StringLength(30, MinimumLength = 8, ErrorMessage = "Password must contain between 8 and 30 characters.")]
         public string retypePassword { get; set; }
     }
 }
