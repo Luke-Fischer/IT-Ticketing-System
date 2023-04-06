@@ -18,5 +18,7 @@ namespace IT_Ticketing_System.Models
         public string Priority { get; set; }
         [Required]
         public string Status { get; set; }
+
+        public DateTime timeSubmitted { get; set; }
     }
 }
