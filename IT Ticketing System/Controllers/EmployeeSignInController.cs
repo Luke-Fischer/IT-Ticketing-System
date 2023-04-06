@@ -12,8 +12,21 @@ namespace IT_Ticketing_System.Controllers
         {
             _db = db;
         }
-        public IActionResult Index()
+
+        public IActionResult Index(User obj)
         {
+            var userList = _db.Users.ToList();
+            foreach (User user in userList)
+            {
+                if ((user.Email == obj.Email) && (user.Password == obj.Password))
+                {
+                    return RedirectToAction("Index", "EmployeeInterface");
+                }
+            }
+            if(!(obj.Email == null && obj.Password == null))
+            {
+                ModelState.AddModelError("Password", "Incorrect Email or Password.");
+            }
             return View();
         }
 
@@ -26,10 +39,23 @@ namespace IT_Ticketing_System.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Register(Register obj)
         {
+            //Check if passwords match
             if(obj.Password != obj.retypePassword)
             {
                 ModelState.AddModelError("RetypePassword", "Passwords do not match.");
             }
+
+            //Check if email is already used in database
+            var userList = _db.Users.ToList();
+            foreach(User user in userList)
+            {
+                if(user.Email == obj.Email)
+                {
+                    ModelState.AddModelError("Email", "Account already exists with this email address.");
+                    return View(obj);
+                }
+            }
+
             //Extract User info from register data
             if (ModelState.IsValid)
             {
@@ -43,7 +69,6 @@ namespace IT_Ticketing_System.Controllers
                 TempData["success"] = "Account created successfully";
                 return RedirectToAction("Index");
             }
-            
             return View(obj);
         }
     }
