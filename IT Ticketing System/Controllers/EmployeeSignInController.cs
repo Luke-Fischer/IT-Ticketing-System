@@ -20,7 +20,7 @@ namespace IT_Ticketing_System.Controllers
             {
                 if ((user.Email == obj.Email) && (user.Password == obj.Password))
                 {
-                    return RedirectToAction("Index", "EmployeeInterface");
+                    return RedirectToAction("Index", "EmployeeInterface", obj);
                 }
             }
             if(!(obj.Email == null && obj.Password == null))
