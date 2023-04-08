@@ -6,7 +6,6 @@
 			<h2 class="text-primary">Create Ticket</h2>
 			<hr />
 		</div>
-		<div asp-validation-summary="All"></div>
 		<div class="mb-3">
 			<label asp-for="Title"></label>
 			<input asp-for="Title" class="form-control" />
@@ -19,8 +18,12 @@
 		</div>
 		<div class="mb-3">
 			<label asp-for="Priority"></label>
-			<input asp-for="Priority" class="form-control" />
-			<span asp-validation-for="Priority" class="text-danger"></span>
+			<select asp-for="Priority" class="selectpicker form-control">
+				<option>Low</option>
+				<option>Medium</option>
+				<option>High</option>
+				<option>Urgent</option>
+			</select>
 		</div>
 
 		<button type="submit" class="btn btn-primary" style="width:150px">Create</button>
