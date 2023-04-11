@@ -51,19 +51,20 @@ namespace IT_Ticketing_System.Controllers
         }
 
         //GET
-        public IActionResult Edit(int id)
+        public IActionResult Edit(int? id)
         {
-            /* if(id == null)
+             if(id == null)
             {
                 return NotFound();
-            }*/
+            }
             var ticket = _db.Tickets.Find(id);
 
             if(ticket == null)
             {
                 return NotFound();
             }
-            ticketId = id;
+            ticketId = (int)id;
+            
             return View(ticket);
         }
         //UPDATE
@@ -82,6 +83,24 @@ namespace IT_Ticketing_System.Controllers
             _db.Tickets.Update(updatingTicket);
             _db.SaveChanges();
             TempData["success"] = "Ticket updated successfully";
+            return RedirectToAction("Index");
+        }
+        //DELETE
+        public IActionResult Delete(int? id)
+        {   
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var ticket = _db.Tickets.Find(id);
+            
+            if (ticket == null)
+            {
+                return NotFound();
+            }
+            _db.Tickets.Remove(ticket);
+            _db.SaveChanges();
+            TempData["success"] = "Ticket deleted successfully";
             return RedirectToAction("Index");
         }
     }

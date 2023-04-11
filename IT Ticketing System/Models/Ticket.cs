@@ -10,7 +10,7 @@ namespace IT_Ticketing_System.Models
         [Required]
         public int UserId { get; set; }
         [Required]
-        public String Title { get; set; }
+        public string Title { get; set; }
   
         public string Message { get; set; }
 

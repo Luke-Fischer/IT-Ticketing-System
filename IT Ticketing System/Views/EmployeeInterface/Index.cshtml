@@ -8,6 +8,9 @@
 
 <partial name="_Notification" />
 
+<a asp-controller="Home" asp-action="Index" class="btn btn-dark sticky-top col-1">
+    Log Out
+</a>
 <div class="container  p-3">
     <div class="row pt-4">
         <div class="col-6">
@@ -60,9 +63,13 @@
                 <td width="10%">
                     @obj.timeSubmitted
                 </td>
-                <td>
-                    <div class="w-75 btn-group" role="group">
+                <td width="13%">
+                    <div class="w-40 btn-group" role="group">
                         <a asp-controller="EmployeeInterface" asp-action="Edit" asp-route-id="@obj.TicketId" class="btn btn-primary">Edit</a>
+                    </div>
+
+                    <div class="w-40 btn-group" role="group">
+                        <a asp-controller="EmployeeInterface" asp-action="Delete" asp-route-id="@obj.TicketId" class="btn btn-danger">Delete</a>
                     </div>
                 </td>
             </tr>
