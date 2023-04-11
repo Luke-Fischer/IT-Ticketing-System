@@ -37,7 +37,7 @@
                 Status
             </th>
             <th>
-                Submitted On
+                Last Updated
             </th>
         </tr>
     </thead>
@@ -62,7 +62,7 @@
                 </td>
                 <td>
                     <div class="w-75 btn-group" role="group">
-                        <a asp-controller="EmployeeInterface" asp-action="Create" asp-route-id="@obj.TicketId" class="btn btn-primary">Edit</a>
+                        <a asp-controller="EmployeeInterface" asp-action="Edit" asp-route-id="@obj.TicketId" class="btn btn-primary">Edit</a>
                     </div>
                 </td>
             </tr>
