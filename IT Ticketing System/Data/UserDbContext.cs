@@ -13,5 +13,7 @@ namespace IT_Ticketing_System.Data
         public DbSet<User> Users { get; set; }
 
         public DbSet<Ticket> Tickets { get; set; }
+
+        public DbSet<Admin> Admins { get; set; }
     }
 }
