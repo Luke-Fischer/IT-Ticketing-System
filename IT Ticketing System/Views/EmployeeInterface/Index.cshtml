@@ -8,7 +8,7 @@
 
 <partial name="_Notification" />
 
-<a asp-controller="Home" asp-action="Index" class="btn btn-dark sticky-top col-1">
+<a asp-controller="EmployeeSignIn" asp-action="Index" class="btn btn-dark sticky-top col-1">
     Log Out
 </a>
 <div class="container  p-3">
@@ -45,8 +45,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var obj in Model)
-        {
+        @foreach (var obj in Model){
             <tr>
                 <td width="20%">
                 @obj.Title
