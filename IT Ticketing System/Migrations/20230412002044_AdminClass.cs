@@ -18,7 +18,7 @@ namespace IT_Ticketing_System.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CompanyName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CompanyPassword = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CompanyUniqueIdentifer = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    CompanyUniqueIdentifer = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

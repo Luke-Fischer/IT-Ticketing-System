@@ -1,13 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
 
 namespace IT_Ticketing_System.Models
 {
-    public class Admin
+    public class AdminRegister
     {
-        [Key]
-        public int AdminId { get; set; }
         [Required]
         [DisplayName("Company Name")]
         public string CompanyName { get; set; }
@@ -15,7 +12,8 @@ namespace IT_Ticketing_System.Models
         [Required]
         [DisplayName("Company Password")]
         public string CompanyPassword { get; set; }
-        [AllowNull]
-        public string CompanyUniqueIdentifer { get; set; }
+        [Required]
+        [DisplayName("Retype Company Password")]
+        public string RetypeCompanyPassword { get; set; }
     }
 }

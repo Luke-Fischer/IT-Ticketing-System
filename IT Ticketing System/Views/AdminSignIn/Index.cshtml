@@ -2,31 +2,32 @@
     ViewData["Title"] = "Admin Sign In";
 }
 
-@model User
+@model Admin
 
 <partial name="_Notification" />
 
 <form>
     <div style="position:relative; width:50%; left:25%; top:90px;">
-        <h1 style="text-align:center;">Login</h1>
+        <h1 style="text-align:center;">Administrator Login</h1>
         <br />
         <!-- Email input -->
         <div class="form-outline;">
-            <label asp-for="Email"></label>
-            <input asp-for="Email" class="form-control" />
+            <label asp-for="CompanyName"></label>
+            <input asp-for="CompanyName" class="form-control" />
+            <span asp-validation-for="CompanyName" class="text-danger"></span>
         </div>
         <br />
         <!-- Password input -->
         <div class="form-outline mb-4">
-            <label asp-for="Password"></label>
-            <input asp-for="Password" class="form-control" />
-            <span asp-validation-for="Password" class="text-danger"></span>
+            <label asp-for="CompanyPassword"></label>
+            <input asp-for="CompanyPassword" class="form-control" />
+            <span asp-validation-for="CompanyPassword" class="text-danger"></span>
         </div>
         <!-- Submit button -->
         <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
         <!-- Register buttons -->
         <div class="text-center">
-            <p>Not a member?  <a class="text-blue" asp-area="" asp-controller="EmployeeSignIn" asp-action="Register">Register</a></p>
+            <p>Not a member?  <a class="text-blue" asp-area="" asp-controller="AdminSignIn" asp-action="Register">Register</a></p>
 
         </div>
     </div>

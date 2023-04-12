@@ -44,7 +44,7 @@ namespace IT_Ticketing_System.Migrations
 
                     b.HasKey("AdminId");
 
-                    b.ToTable("Admins");
+                    b.ToTable("Admins", (string)null);
                 });
 
             modelBuilder.Entity("IT_Ticketing_System.Models.Ticket", b =>
@@ -79,7 +79,7 @@ namespace IT_Ticketing_System.Migrations
 
                     b.HasKey("TicketId");
 
-                    b.ToTable("Tickets");
+                    b.ToTable("Tickets", (string)null);
                 });
 
             modelBuilder.Entity("IT_Ticketing_System.Models.User", b =>
@@ -99,7 +99,7 @@ namespace IT_Ticketing_System.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 #pragma warning restore 612, 618
         }

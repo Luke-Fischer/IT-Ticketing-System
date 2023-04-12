@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Register Account";
+}
+
+@model AdminRegister
+
+<form method="post">
+    <div style="position:relative; width:50%; left:25%; top:90px;">
+        <h1 style="text-align:center;">Register</h1>
+        <br />
+        <div asp-validation-summary="All"></div>
+        <!-- Email input -->
+        <div class="form-outline mb-4;">
+            <label asp-for="CompanyName"></label>
+            <input asp-for="CompanyName" class="form-control" />
+            <span asp-validation-for="CompanyName" class="text-danger"></span>
+        </div>
+        <br />
+        <!-- Password input -->
+        <div class="form-outline mb-4">
+            <label asp-for="CompanyPassword"></label>
+            <input asp-for="CompanyPassword" class="form-control" />
+            <span asp-validation-for="CompanyPassword" class="text-danger"></span>
+        </div>
+
+        <!-- Password retype input -->
+        <div class="form-outline mb-4">
+            <label asp-for="RetypeCompanyPassword"></label>
+            <input asp-for="RetypeCompanyPassword" class="form-control" />
+            <span asp-validation-for="RetypeCompanyPassword" class="text-danger"></span>
+        </div>
+
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-primary">Register</button>
+        <br /><br />
+        <a asp-controller="AdminSignIn" asp-action="Index" class="btn btn-secondary">
+            Back
+        </a>
+    </div>
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
