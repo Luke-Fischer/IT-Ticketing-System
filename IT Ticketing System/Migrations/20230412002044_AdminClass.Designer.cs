@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IT_Ticketing_System.Migrations
 {
     [DbContext(typeof(UserDbContext))]
-    [Migration("20230412001706_addAdminToDatabase")]
-    partial class addAdminToDatabase
+    [Migration("20230412002044_AdminClass")]
+    partial class AdminClass
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
