@@ -19,7 +19,7 @@ namespace IT_Ticketing_System.Controllers
             {
                 if ((admin.CompanyName == obj.CompanyName) && (admin.CompanyPassword == obj.CompanyPassword))
                 {
-                    return RedirectToAction("Index", "AdminInterface", obj);
+                    return RedirectToAction("Index", "AdminInterface", admin);
                 }
             }
             if (!(obj.CompanyName == null && obj.CompanyPassword == null))
@@ -60,7 +60,7 @@ namespace IT_Ticketing_System.Controllers
                 Admin adminObj = new Admin();
                 adminObj.CompanyName = obj.CompanyName;
                 adminObj.CompanyPassword = obj.CompanyPassword;
-                adminObj.CompanyUniqueIdentifer = "n/a";
+                adminObj.CompanyUniqueIdentifer = "";
                 //Push to db
                 _db.Admins.Add(adminObj);
                 _db.SaveChanges();
