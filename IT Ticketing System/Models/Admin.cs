@@ -12,10 +12,10 @@ namespace IT_Ticketing_System.Models
         [DisplayName("Company Name")]
         public string CompanyName { get; set; }
         [DataType(DataType.Password)]
-        [Required]
         [DisplayName("Company Password")]
         public string CompanyPassword { get; set; }
         [AllowNull]
+        [DisplayName("Your Unique Identifer")]
         public string CompanyUniqueIdentifer { get; set; }
     }
 }

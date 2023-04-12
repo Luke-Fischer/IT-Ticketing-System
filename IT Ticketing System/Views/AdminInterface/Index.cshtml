@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Admin Interface";
+}
+
+@model Admin
+
+<partial name="_Notification" />
+
+<!-- Email input -->
+<div style="position:relative; width:30%; left:-15%;" class="form-outline;">
+    <label asp-for="CompanyUniqueIdentifer"></label>
+    <br />
+    <input style="width:50%; display:inline;" asp-for="CompanyUniqueIdentifer" class="form-control" />
+    <button style="position:relative; top:-2.5px" type="submit" class="btn btn-primary btn-block">Confirm</button>
+</div>
+
+<form>
+    <div style="position:relative; width:50%; left:25%;">
+        <h1 style="text-align:center;">Manage Employee Tickets</h1>
+    </div>
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

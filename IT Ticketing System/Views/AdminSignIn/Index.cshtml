@@ -4,7 +4,7 @@
 
 @model Admin
 
-<partial name="_Notification" />
+<partial name="_Notification"/>
 
 <form>
     <div style="position:relative; width:50%; left:25%; top:90px;">
@@ -14,14 +14,13 @@
         <div class="form-outline;">
             <label asp-for="CompanyName"></label>
             <input asp-for="CompanyName" class="form-control" />
-            <span asp-validation-for="CompanyName" class="text-danger"></span>
         </div>
         <br />
         <!-- Password input -->
         <div class="form-outline mb-4">
             <label asp-for="CompanyPassword"></label>
             <input asp-for="CompanyPassword" class="form-control" />
-            <span asp-validation-for="CompanyPassword" class="text-danger"></span>
+            <p class="text-danger">@ViewBag.ErrorMessage</p>
         </div>
         <!-- Submit button -->
         <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>

@@ -1,6 +1,7 @@
 ﻿using IT_Ticketing_System.Data;
 using IT_Ticketing_System.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace IT_Ticketing_System.Controllers
 {
@@ -11,8 +12,20 @@ namespace IT_Ticketing_System.Controllers
         {
             _db = db;
         }
-        public IActionResult Index()
+        public IActionResult Index(Admin obj)
         {
+            var adminList = _db.Admins.ToList();
+            foreach (Admin admin in adminList)
+            {
+                if ((admin.CompanyName == obj.CompanyName) && (admin.CompanyPassword == obj.CompanyPassword))
+                {
+                    return RedirectToAction("Index", "AdminInterface", obj);
+                }
+            }
+            if (!(obj.CompanyName == null && obj.CompanyPassword == null))
+            {
+                ViewBag.ErrorMessage = "Incorrect Company Name or Password";
+            }
             return View();
         }
         public IActionResult Register()
@@ -27,7 +40,7 @@ namespace IT_Ticketing_System.Controllers
             //Check if passwords match
             if (obj.CompanyPassword != obj.RetypeCompanyPassword)
             {
-                ModelState.AddModelError("RetypePassword", "Passwords do not match.");
+                ModelState.AddModelError("RetypeCompanyPassword", "Passwords do not match.");
             }
 
             //Check if email is already used in database
@@ -47,7 +60,7 @@ namespace IT_Ticketing_System.Controllers
                 Admin adminObj = new Admin();
                 adminObj.CompanyName = obj.CompanyName;
                 adminObj.CompanyPassword = obj.CompanyPassword;
-                
+                adminObj.CompanyUniqueIdentifer = "n/a";
                 //Push to db
                 _db.Admins.Add(adminObj);
                 _db.SaveChanges();
