@@ -62,7 +62,24 @@ namespace IT_Ticketing_System.Controllers
         }
         public IActionResult Display()
         {
-            return View();
+            //Innit list
+            List<Ticket> compList = new List<Ticket>();
+            
+            //Grab tickets from each user with the connecting id string
+            var userList = _db.Users.ToList();
+            foreach (User user in userList)
+            {
+                if(user.UserUniqueIdentfier == companyUniqueId)
+                {
+                    var ticketList = _db.Tickets.Where(p => p.UserId == user.Id);
+                    foreach (Ticket ticket in ticketList)
+                    {
+                        compList.Add(ticket);
+                    }
+                }
+            }
+            IEnumerable<Ticket> fullList = compList;
+            return View(fullList);
         }
     }
 }

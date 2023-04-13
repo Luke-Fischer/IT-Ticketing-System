@@ -13,5 +13,6 @@ namespace IT_Ticketing_System.Models
 
         [DataType(DataType.Password)]
         public string? Password { get; set; }
+        public string UserUniqueIdentfier { get; set; }
     }
 }

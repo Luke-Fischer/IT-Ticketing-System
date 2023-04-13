@@ -62,7 +62,7 @@ namespace IT_Ticketing_System.Controllers
                 User userObj = new User();
                 userObj.Email = obj.Email;
                 userObj.Password = obj.Password;
-
+                userObj.UserUniqueIdentfier = "";
                 //Push to db
                 _db.Users.Add(userObj);
                 _db.SaveChanges();

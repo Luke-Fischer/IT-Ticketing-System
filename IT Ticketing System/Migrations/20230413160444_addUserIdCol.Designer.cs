@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IT_Ticketing_System.Migrations
 {
     [DbContext(typeof(UserDbContext))]
-    [Migration("20230412212058_updateRequiredFields")]
-    partial class updateRequiredFields
+    [Migration("20230413160444_addUserIdCol")]
+    partial class addUserIdCol
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -98,6 +98,10 @@ namespace IT_Ticketing_System.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserUniqueIdentfier")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
