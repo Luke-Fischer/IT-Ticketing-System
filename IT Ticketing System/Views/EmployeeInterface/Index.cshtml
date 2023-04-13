@@ -1,7 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@model IEnumerable<Ticket>
+﻿@model IEnumerable<Ticket>
 @{
     ViewData["Title"] = "Index";
 }
@@ -11,6 +8,13 @@
 <a asp-controller="EmployeeSignIn" asp-action="Index" class="btn btn-dark sticky-top col-1">
     Log Out
 </a>
+
+<div style="display:inline; float:right;">
+    <a class="btn btn-primary btn-info" asp-controller="EmployeeInterface" asp-action="ViewConnection">View Your Connection Details</a>
+    <a class="btn btn-primary" asp-controller="EmployeeInterface" asp-action="Connect">Connect to your company</a>
+</div>
+
+
 <div class="container  p-3">
     <div class="row pt-4">
         <div class="col-6">

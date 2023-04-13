@@ -1,6 +1,7 @@
 ﻿using IT_Ticketing_System.Data;
 using IT_Ticketing_System.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.Completion;
 using System.Diagnostics;
 
 namespace IT_Ticketing_System.Controllers
@@ -42,6 +43,7 @@ namespace IT_Ticketing_System.Controllers
             obj.Status = "pending";
             obj.UserId = _userId;
             obj.timeSubmitted = DateTime.Now;
+            obj.UserEmail = _db.Users.Find(_userId).Email;
             Debug.WriteLine(obj.Title + obj.Message + obj.Priority + obj.timeSubmitted + obj.UserId);
 			//Push to db
 			_db.Tickets.Add(obj);
@@ -102,6 +104,49 @@ namespace IT_Ticketing_System.Controllers
             _db.SaveChanges();
             TempData["success"] = "Ticket deleted successfully";
             return RedirectToAction("Index");
+        }
+        //Retrieve users company string
+        public IActionResult Connect()
+        {
+            return View();
+        }
+        //UPDATE
+        public IActionResult ConnectPOST(User obj)
+        {
+            //See if this is a valid key
+            var adminList = _db.Admins.ToList();
+            foreach(Admin admin in adminList)
+            {
+                if(admin.CompanyUniqueIdentifer == obj.UserUniqueIdentfier)
+                {
+                    User user = _db.Users.Find(_userId);
+                    user.UserUniqueIdentfier = obj.UserUniqueIdentfier;
+                    _db.Update(user);
+                    _db.SaveChanges();
+                    TempData["success"] = "Connection to your company made successfully";
+                    return RedirectToAction("Index");
+                    
+                }
+            }
+            ViewBag.ErrorMessage = "No company exists with this key. Please contact your administrator for the correct key.";
+            return View(obj);
+        }
+        //Retrieve users company string
+        public IActionResult ViewConnection()
+        {
+            InfoConnection info = new InfoConnection();
+            User usr = _db.Users.Find(_userId);
+            info.key = usr.UserUniqueIdentfier.ToString();
+            var compList = _db.Admins.ToList();
+            foreach(Admin ad in compList)
+            {
+                if(ad.CompanyUniqueIdentifer == usr.UserUniqueIdentfier)
+                {
+                    info.CompName = ad.CompanyName;
+                    break;
+                }
+            }
+            return View(info);
         }
     }
 }

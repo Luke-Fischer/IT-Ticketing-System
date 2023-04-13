@@ -1,7 +1,9 @@
 ﻿using IT_Ticketing_System.Data;
 using IT_Ticketing_System.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.Scripting;
 using System.Diagnostics;
+using System.Drawing.Text;
 
 namespace IT_Ticketing_System.Controllers
 {
@@ -10,6 +12,7 @@ namespace IT_Ticketing_System.Controllers
         private static int? compId;
         private static string companyName;
         private static string companyUniqueId;
+        private static int ticketId;
 
         private UserDbContext _db;
         public AdminInterfaceController(UserDbContext db)
@@ -50,6 +53,19 @@ namespace IT_Ticketing_System.Controllers
                         {
                             return RedirectToAction("Display");
                         }
+                        //Check if this key is already in use
+                        var coList = _db.Admins.ToList();
+                        if(coList != null)
+                        {
+                            foreach (Admin co in coList)
+                            {
+                                if (co.CompanyUniqueIdentifer == companyUniqueId)
+                                {
+                                    ViewBag.ErrorMessage = "This key is already in use.  ";
+                                    return View();
+                                }
+                            }
+                        }
                         updatingAdmin.CompanyUniqueIdentifer = companyUniqueId;
                         _db.Admins.Update(updatingAdmin);
                         _db.SaveChanges();
@@ -79,7 +95,38 @@ namespace IT_Ticketing_System.Controllers
                 }
             }
             IEnumerable<Ticket> fullList = compList;
+
             return View(fullList);
+        }
+        //GET
+        public IActionResult Update(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var ticket = _db.Tickets.Find(id);
+
+            if (ticket == null)
+            {
+                return NotFound();
+            }
+            ticketId = (int)id;
+
+            return View(ticket);
+        }
+        //UPDATE
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Update(Ticket obj)
+        {
+            var updatingTicket = _db.Tickets.Find(ticketId);
+            updatingTicket.Status = obj.Status;
+            updatingTicket.timeSubmitted = DateTime.Now;
+            _db.Tickets.Update(updatingTicket);
+            _db.SaveChanges();
+            TempData["success"] = "Ticket updated successfully";
+            return RedirectToAction("Display");
         }
     }
 }

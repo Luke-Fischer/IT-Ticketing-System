@@ -1,24 +1,23 @@
 ﻿@{
-    ViewData["Title"] = "Admin Interface";
+    ViewData["Title"] = "Employee Connect";
 }
 
-@model Admin
+@model User
 
 <partial name="_Notification" />
 
-<form>
+<form method="post" controller="EmployeeInterface" action="ConnectPOST">
     <div style="position:relative; width:50%; left:25%; top:100px;">
-        <h1 style="text-align:center;">Create a unique identifier key to connect to your employees tickets.</h1>
+        <h1 style="text-align:center;">Enter the key given to you by your administrator.</h1>
         <br /><br>
-        <input asp-for="CompanyUniqueIdentifer" class="form-control" />
+        <input asp-for="UserUniqueIdentfier" class="form-control" />
         <p class="text-danger">@ViewBag.ErrorMessage</p>
         <br /><br>
         <button style="position:relative; left: 43.5%" type="submit" class="btn btn-primary btn-block">Confirm</button>
     </div>
-
 </form>
 
-@section Scripts{
+@section Scripts{ 
     @{
         <partial name="_ValidationScriptsPartial" />
     }

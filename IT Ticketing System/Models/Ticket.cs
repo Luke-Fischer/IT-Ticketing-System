@@ -11,7 +11,9 @@ namespace IT_Ticketing_System.Models
         public int UserId { get; set; }
         [Required]
         public string Title { get; set; }
-  
+
+        public string UserEmail { get; set; }
+
         public string Message { get; set; }
 
         [Required]

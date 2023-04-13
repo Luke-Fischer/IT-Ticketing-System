@@ -1,13 +1,11 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model IEnumerable<Ticket>
+
 <partial name="_Notification" />
 
 <a asp-controller="AdminSignIn" asp-action="Index" class="btn btn-dark sticky-top col-1">
     Log Out
 </a>
+
 <div class="container  p-3">
     <div class="row pt-4">
         <div class="col-6">
@@ -15,3 +13,59 @@
         </div>
     </div>
 </div>
+
+<table class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                Employee
+            </th>
+            <th>
+                Title
+            </th>
+            <th>
+                Message
+            </th>
+            <th>
+                Priority
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                Last Updated
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in Model)
+        {
+            string email = "mailto:" + obj.UserEmail;
+            <tr>
+                <td width="10%">
+                    <a href="@email" target="_blank">@obj.UserEmail</a>
+                </td>
+                <td width="15%">
+                    @obj.Title
+                </td>
+                <td width="30%">
+                    @obj.Message
+                </td>
+                <td width="10%">
+                    @obj.Priority
+                </td>
+                <td width="20%">
+                    @obj.Status
+                </td>
+                <td width="10%">
+                    @obj.timeSubmitted
+                </td>
+                <td width="13%">
+                    <div class="w-40 btn-group" role="group">
+                        <a asp-controller="AdminInterface" asp-action="Update" asp-route-id="@obj.TicketId" class="btn btn-primary">Update</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
