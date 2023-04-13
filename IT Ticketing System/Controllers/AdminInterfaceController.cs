@@ -128,5 +128,12 @@ namespace IT_Ticketing_System.Controllers
             TempData["success"] = "Ticket updated successfully";
             return RedirectToAction("Display");
         }
+        public IActionResult ViewConnection()
+        {
+            InfoConnection info = new InfoConnection();
+            info.CompName = companyName;
+            info.key = companyUniqueId;
+            return View(info);
+        }
     }
 }
