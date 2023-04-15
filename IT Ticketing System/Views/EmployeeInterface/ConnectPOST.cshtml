@@ -4,8 +4,6 @@
 
 @model User
 
-<partial name="_Notification" />
-
 <form method="post" controller="EmployeeInterface" action="ConnectPOST">
     <div style="position:relative; width:50%; left:25%; top:100px;">
         <h1 style="text-align:center;">Enter the key given to you by your administrator.</h1>
@@ -13,7 +11,8 @@
         <input id="input" asp-for="UserUniqueIdentfier" class="form-control" />
         <p class="text-danger">@ViewBag.ErrorMessage</p>
         <br /><br>
-        <button style="position:relative; left: 43.5%" type="submit" class="btn btn-primary btn-block">Confirm</button>
+        <button style="float:right;" type="submit" class="btn btn-primary btn-block">Confirm</button>
+        <a style="float:left;" class="btn btn-secondary" asp-area="" asp-controller="EmployeeInterface" asp-action="Index">Back</a>
     </div>
 </form>
 
