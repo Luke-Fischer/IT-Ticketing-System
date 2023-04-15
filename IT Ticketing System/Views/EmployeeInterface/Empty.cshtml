@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewData["Title"] = "Empty";
+}
+
+<a asp-controller="EmployeeSignIn" asp-action="Index" class="btn btn-dark sticky-top col-1">
+    Log Out
+</a>
+
+<div style="display:inline; float:right;">
+    <a class="btn btn-primary btn-info" asp-controller="EmployeeInterface" asp-action="ViewConnection">View Your Connection Details</a>
+    <a class="btn btn-primary" asp-controller="EmployeeInterface" asp-action="Connect">Connect to your company</a>
+</div>
+
+
+<div class="container  p-3">
+    <br /><br /><br /><br /><br /><br /><br />
+
+    <h3 class="d-flex justify-content-center">You have no tickets</h3>
+    <br /><br />
+    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+        <a asp-controller="EmployeeInterface" asp-action="Create" class="btn btn-primary me-md-2">
+            Create New Ticket
+        </a>
+    </div>
+</div>
+

@@ -95,10 +95,17 @@ namespace IT_Ticketing_System.Controllers
                 }
             }
             IEnumerable<Ticket> fullList = compList;
-
+            if(fullList.Count() == 0)
+            {
+                return RedirectToAction("Empty");
+            }
             return View(fullList);
         }
-        //GET
+        public IActionResult Empty()
+        {
+            return View();
+        }
+            //GET
         public IActionResult Update(int? id)
         {
             if (id == null)

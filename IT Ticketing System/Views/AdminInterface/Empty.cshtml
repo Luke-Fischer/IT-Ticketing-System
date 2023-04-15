@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Empty";
+}
+
+<a asp-controller="AdminSignIn" asp-action="Index" class="btn btn-dark sticky-top col-1">
+    Log Out
+</a>
+
+<div class="container  p-3">
+    <br /><br /><br /><br /><br />
+
+    <h3 class="d-flex justify-content-center">You have no tickets</h3>
+    <br /><br />
+    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+        <p>To view your employees tickets they must be connected to your organization via your unique identifier key.</p>
+    </div>
+    <br /><br />
+    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+    <a class="btn btn-primary btn-info" asp-controller="AdminInterface" asp-action="ViewConnection">View Your Connection Details</a>
+    </div>
+</div>

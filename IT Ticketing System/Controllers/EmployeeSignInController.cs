@@ -1,7 +1,9 @@
 ﻿using IT_Ticketing_System.Data;
 using IT_Ticketing_System.Models;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 using System.Diagnostics;
+using System.Text;
 
 namespace IT_Ticketing_System.Controllers
 {
@@ -15,10 +17,15 @@ namespace IT_Ticketing_System.Controllers
 
         public IActionResult Index(User obj)
         {
+            Md5Security security = new Md5Security();
+            User userObj = new User();
+            userObj.Email = obj.Email;
+
             var userList = _db.Users.ToList();
             foreach (User user in userList)
             {
-                if ((user.Email == obj.Email) && (user.Password == obj.Password))
+
+                if ((user.Email == obj.Email) && (user.Password == security.Encrypt(obj.Password)))
                 {
                     return RedirectToAction("Index", "EmployeeInterface", obj);
                 }
@@ -27,6 +34,7 @@ namespace IT_Ticketing_System.Controllers
             {
                 ModelState.AddModelError("Password", "Incorrect Email or Password.");
             }
+
             return View();
         }
 
@@ -59,9 +67,11 @@ namespace IT_Ticketing_System.Controllers
             //Extract User info from register data
             if (ModelState.IsValid)
             {
+                
                 User userObj = new User();
                 userObj.Email = obj.Email;
-                userObj.Password = obj.Password;
+                Md5Security security = new Md5Security();
+                userObj.Password = security.Encrypt(obj.Password);
                 userObj.UserUniqueIdentfier = "";
                 //Push to db
                 _db.Users.Add(userObj);

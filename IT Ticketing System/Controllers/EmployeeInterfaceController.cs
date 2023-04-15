@@ -26,11 +26,20 @@ namespace IT_Ticketing_System.Controllers
                 }
             }
             IEnumerable<Ticket> ticketList = _db.Tickets.Where(p => p.UserId == _userId);
+
+            if(ticketList.Count() == 0)
+            {
+                return RedirectToAction("Empty");
+            }
             return View(ticketList);
         }
 
-		//GET
-		public IActionResult Create()
+        public IActionResult Empty()
+        {
+            return View();
+        }
+        //GET
+        public IActionResult Create()
 		{
 			return View();
 		}
@@ -124,8 +133,7 @@ namespace IT_Ticketing_System.Controllers
                     _db.Update(user);
                     _db.SaveChanges();
                     TempData["success"] = "Connection to your company made successfully";
-                    return RedirectToAction("Index");
-                    
+                    return RedirectToAction("Index");   
                 }
             }
             ViewBag.ErrorMessage = "No company exists with this key. Please contact your administrator for the correct key.";

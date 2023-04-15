@@ -14,10 +14,11 @@ namespace IT_Ticketing_System.Controllers
         }
         public IActionResult Index(Admin obj)
         {
+            Md5Security security = new Md5Security();
             var adminList = _db.Admins.ToList();
             foreach (Admin admin in adminList)
             {
-                if ((admin.CompanyName == obj.CompanyName) && (admin.CompanyPassword == obj.CompanyPassword))
+                if ((admin.CompanyName == obj.CompanyName) && (admin.CompanyPassword == security.Encrypt(obj.CompanyPassword)))
                 {
                     return RedirectToAction("Index", "AdminInterface", admin);
                 }
@@ -59,7 +60,8 @@ namespace IT_Ticketing_System.Controllers
             {
                 Admin adminObj = new Admin();
                 adminObj.CompanyName = obj.CompanyName;
-                adminObj.CompanyPassword = obj.CompanyPassword;
+                Md5Security security = new Md5Security();
+                adminObj.CompanyPassword = security.Encrypt(obj.CompanyPassword);
                 adminObj.CompanyUniqueIdentifer = "";
                 //Push to db
                 _db.Admins.Add(adminObj);
