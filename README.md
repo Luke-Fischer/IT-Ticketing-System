@@ -10,4 +10,4 @@ On Admin account creation you will be prompted to enter a unique key. Share this
 
 Note: Passwords are securely encrypted.
 
-Tech Stack: .NET, C#, HTML, CSS, Bootstrap, MSSQL Server, Azure
+Technologies: .NET, C#, HTML, CSS, Bootstrap, MSSQL Server, Azure
