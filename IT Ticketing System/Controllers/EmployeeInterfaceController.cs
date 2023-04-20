@@ -15,6 +15,7 @@ namespace IT_Ticketing_System.Controllers
         {
             _db = db;
         }
+        [ResponseCache(Duration = 30, NoStore = true)]
         public IActionResult Index(User obj)
         {
             var userList = _db.Users.ToList();
@@ -81,6 +82,7 @@ namespace IT_Ticketing_System.Controllers
         //UPDATE
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ResponseCache(Duration = 30, NoStore = true)]
         public IActionResult Edit(Ticket obj)
         {
             var updatingTicket = _db.Tickets.Find(ticketId);
@@ -96,7 +98,9 @@ namespace IT_Ticketing_System.Controllers
             TempData["success"] = "Ticket updated successfully";
             return RedirectToAction("Index");
         }
+
         //DELETE
+        [ResponseCache(Duration = 30, NoStore = true)]
         public IActionResult Delete(int? id)
         {   
             if (id == null)
@@ -120,6 +124,7 @@ namespace IT_Ticketing_System.Controllers
             return View();
         }
         //UPDATE
+        [ResponseCache(Duration = 30, NoStore = true)]
         public IActionResult ConnectPOST(User obj)
         {
             //See if this is a valid key

@@ -19,7 +19,7 @@ namespace IT_Ticketing_System.Controllers
         {
             _db = db;
         }
-
+        [ResponseCache(Duration = 30, NoStore = true)]
         public IActionResult Index(Admin admin)
         {
             //Determine if account has added a connection string
@@ -76,6 +76,7 @@ namespace IT_Ticketing_System.Controllers
                 return View();
             }
         }
+        [ResponseCache(Duration = 30, NoStore = true)]
         public IActionResult Display()
         {
             //Innit list
@@ -125,6 +126,7 @@ namespace IT_Ticketing_System.Controllers
         //UPDATE
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ResponseCache(Duration = 30, NoStore = true)]
         public IActionResult Update(Ticket obj)
         {
             var updatingTicket = _db.Tickets.Find(ticketId);
