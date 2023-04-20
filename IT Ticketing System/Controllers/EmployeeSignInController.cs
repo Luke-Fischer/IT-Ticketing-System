@@ -14,7 +14,7 @@ namespace IT_Ticketing_System.Controllers
         {
             _db = db;
         }
-
+        [ResponseCache(Duration = 30, NoStore = true)]
         public IActionResult Index(User obj)
         {
             Md5Security security = new Md5Security();
@@ -37,7 +37,7 @@ namespace IT_Ticketing_System.Controllers
 
             return View();
         }
-
+        [ResponseCache(Duration = 30, NoStore = true)]
         public IActionResult Register()
         {
             return View();
