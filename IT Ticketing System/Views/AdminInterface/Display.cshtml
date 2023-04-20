@@ -18,58 +18,55 @@
     </div>
 </div>
 
-<table class="table table-bordered table-striped" style="width:100%">
-    <thead>
-        <tr>
-            <th>
-                Employee
-            </th>
-            <th>
-                Title
-            </th>
-            <th>
-                Message
-            </th>
-            <th>
-                Priority
-            </th>
-            <th>
-                Status
-            </th>
-            <th>
-                Last Updated
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var obj in Model)
-        {
-            string email = "mailto:" + obj.UserEmail;
-            <tr>
-                <td width="10%">
-                    <a href="@email" target="_blank">@obj.UserEmail</a>
-                </td>
-                <td width="15%">
-                    <strong>@obj.Title</strong>
-                </td>
-                <td width="30%">
-                    @obj.Message
-                </td>
-                <td width="10%">
-                    @obj.Priority
-                </td>
-                <td width="20%">
-                    @obj.Status
-                </td>
-                <td width="10%">
-                    @obj.timeSubmitted
-                </td>
-                <td width="13%">
-                    <div class="w-40 btn-group" role="group">
-                        <a asp-controller="AdminInterface" asp-action="Update" asp-route-id="@obj.TicketId" class="btn btn-primary">Update</a>
-                    </div>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+@foreach (var obj in Model)
+{
+    string email = "mailto:" + obj.UserEmail;
+
+    string colour = "";
+    string statusColour = "";
+
+    if (obj.Priority == "Low")
+    {
+        colour = "Green";
+    }
+    if (obj.Priority == "Medium")
+    {
+        colour = "yellowgreen";
+    }
+    if (obj.Priority == "High")
+    {
+        colour = "Orange";
+    }
+    if (obj.Priority == "Urgent")
+    {
+        colour = "red";
+    }
+    if(obj.Status == "pending")
+    {
+        statusColour = "Grey";
+    }
+    if (obj.Status == "In Progress")
+    {
+        statusColour = "Blue";
+    }
+    if (obj.Status == "Resolved")
+    {
+        statusColour = "Green";
+    }
+
+    <div class="card">
+        <h5 class="card-header">@obj.Title <span style="float:right;">Last Updated: @obj.timeSubmitted</span></h5>
+        <div class="card-body">
+            <p class="card-title"><strong>Priority: </strong><span style="color:@colour"><strong>@obj.Priority</strong></span></p>
+            <p class="card-text">@obj.Message</p>
+            <div style="display:block">
+                <p><strong>Status: </strong><span style="color:@statusColour"><strong>@obj.Status</strong></span></p>
+            </div>
+            <p style="float:left;"><strong>Submitted by: <a href="@email" target="_blank">@obj.UserEmail</a></strong></p>
+            <div style="float:right" class="w-40 btn-group" role="group">
+                <a asp-controller="AdminInterface" asp-action="Update" asp-route-id="@obj.TicketId" class="btn btn-primary">Update</a>
+            </div>
+        </div>
+    </div>
+<br>
+}

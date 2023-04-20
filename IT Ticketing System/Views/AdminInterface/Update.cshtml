@@ -25,7 +25,11 @@
 		</div>
 		<div class="mb-3">
 			<label asp-for="Status"></label>
-			<input asp-for="Status" class="form-control" />
+			<select asp-for="Status" class="selectpicker form-control">
+				<option>Pending</option>
+				<option>In Progress</option>
+				<option>Resolved</option>
+			</select>
 		</div>
 		<button type="submit" class="btn btn-primary" style="width:150px">Update</button>
 		<a asp-controller="AdminInterface" asp-action="Display" class="btn btn-secondary" style="width:150px">Your Tickets</a>

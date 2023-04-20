@@ -27,8 +27,12 @@
         </div>
     </div>
 </div>
+
 @foreach (var obj in Model){
+    
     string colour = "";
+    string statusColour = "";
+
     if (obj.Priority == "Low")
     {
         colour = "Green";
@@ -45,12 +49,24 @@
     {
         colour = "red";
     }
+    if (obj.Status == "pending")
+    {
+        statusColour = "Grey";
+    }
+    if (obj.Status == "In Progress")
+    {
+        statusColour = "Blue";
+    }
+    if (obj.Status == "Resolved")
+    {
+        statusColour = "Green";
+    }
     <div class="card">
-        <h5 class="card-header">@obj.Title</h5>
+        <h5 class="card-header">@obj.Title <span style="float:right;">Last Updated: @obj.timeSubmitted</span></h5>
         <div class="card-body">
             <p class="card-title"><strong>Priority: </strong><span style="color:@colour"><strong>@obj.Priority</strong></span></p>
             <p class="card-text">@obj.Message</p>
-            <p style="float:left; text-align:center;"><strong>Status: @obj.Status</strong></p>
+            <p style="float:left; text-align:center;"><strong>Status: </strong><span style="color:@statusColour"><strong>@obj.Status</strong></span></p>
             <div style="float:right;">
                 <div class="w-40 btn-group" role="group">
                     <a asp-controller="EmployeeInterface" asp-action="Edit" asp-route-id="@obj.TicketId" class="btn btn-primary">Edit</a>
@@ -63,55 +79,3 @@
     </div>
     <br>
 }
-
-<table class="table table-bordered table-striped" style="width:100%" >
-    <thead>
-        <tr>
-            <th>
-                Title
-            </th>
-            <th>
-                Message
-            </th>
-            <th>
-                Priority
-            </th>
-            <th>
-                Status
-            </th>
-            <th>
-                Last Updated
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var obj in Model){
-            <tr>
-                <td width="20%">
-                    <strong>@obj.Title</strong>
-                </td>
-                <td width="30%">
-                @obj.Message
-                </td>
-                <td width="10%">
-                    @obj.Priority
-                </td>
-                <td width="10%">
-                    @obj.Status
-                </td>
-                <td width="10%">
-                    @obj.timeSubmitted
-                </td>
-                <td width="13%">
-                    <div class="w-40 btn-group" role="group">
-                        <a asp-controller="EmployeeInterface" asp-action="Edit" asp-route-id="@obj.TicketId" class="btn btn-primary">Edit</a>
-                    </div>
-
-                    <div class="w-40 btn-group" role="group">
-                        <a asp-controller="EmployeeInterface" asp-action="Delete" asp-route-id="@obj.TicketId" class="btn btn-danger">Delete</a>
-                    </div>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
