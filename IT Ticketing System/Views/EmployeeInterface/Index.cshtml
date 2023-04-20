@@ -27,6 +27,42 @@
         </div>
     </div>
 </div>
+@foreach (var obj in Model){
+    string colour = "";
+    if (obj.Priority == "Low")
+    {
+        colour = "Green";
+    }
+    if (obj.Priority == "Medium")
+    {
+        colour = "yellowgreen";
+    }
+    if (obj.Priority == "High")
+    {
+        colour = "Orange";
+    }
+    if(obj.Priority == "Urgent")
+    {
+        colour = "red";
+    }
+    <div class="card">
+        <h5 class="card-header">@obj.Title</h5>
+        <div class="card-body">
+            <p class="card-title"><strong>Priority: </strong><span style="color:@colour"><strong>@obj.Priority</strong></span></p>
+            <p class="card-text">@obj.Message</p>
+            <p style="float:left; text-align:center;"><strong>Status: @obj.Status</strong></p>
+            <div style="float:right;">
+                <div class="w-40 btn-group" role="group">
+                    <a asp-controller="EmployeeInterface" asp-action="Edit" asp-route-id="@obj.TicketId" class="btn btn-primary">Edit</a>
+                </div>
+                <div class="w-40 btn-group" role="group">
+                    <a asp-controller="EmployeeInterface" asp-action="Delete" asp-route-id="@obj.TicketId" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+}
 
 <table class="table table-bordered table-striped" style="width:100%" >
     <thead>
